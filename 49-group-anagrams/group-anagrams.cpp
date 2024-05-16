@@ -12,7 +12,7 @@ public:
         }
 
         vector<vector<string>> groupedAnagrams;
-        for(auto x: umap)
+        for(const auto &x: umap)
         {
             groupedAnagrams.push_back(x.second);
         }
