@@ -9,6 +9,7 @@ public:
             int longestCounter = 0;
             for(int i = 1; i < nums.size(); i++)
             {
+                // Same number doesn't add or break 'consecutive elements', so we just skip it
                 if(nums[i] != nums[i-1])
                 {
                     if((nums[i-1] + 1) == nums[i])
