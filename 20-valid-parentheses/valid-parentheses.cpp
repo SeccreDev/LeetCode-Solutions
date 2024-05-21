@@ -57,14 +57,8 @@ public:
                 }
             }
         }
-        if(tempCharacters.empty())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+
+        return tempCharacters.empty();
 
     }
 };
