@@ -1,45 +1,82 @@
-class MinStack {
-public:
-    vector< pair<int,int>> st;
-
-    MinStack()
-    {
+class MinStack
+{
+    // Slower
+    // public:
+    //     vector <int> numbers;
+    //     MinStack()
+    //     {
+    //         numbers =  {};
+    //     }
         
-    }
+    //     void push(int val)
+    //     {
+    //         numbers.push_back(val);
+    //     }
+        
+    //     void pop()
+    //     {
+    //         numbers.pop_back();
+    //     }
+        
+    //     int top()
+    //     {
+    //         return numbers[numbers.size() - 1];
+    //     }
+        
+    //     int getMin()
+    //     {
+    //         int min = numbers[0];
+    //         for(int i = 0; i < numbers.size(); i++)
+    //         {
+    //             if ( min > numbers[i])
+    //             {
+    //                 min = numbers[i];
+    //             }
+    //         }
+    //         return min;
+    //     }
+
+    // More Optimal Solution
+    public:
+        vector< pair<int,int>> numberStack;
     
-    void push(int val)
-    {
-        if(st.empty())
+        MinStack()
         {
-            pair<int,int> p;
-            p.first=val;
-            p.second=val;
-            st.push_back(p);
+            
         }
-        else
+        
+        void push(int val)
         {
-            //Stack is not empty
-            pair<int,int> p;
-            p.first=val;
-            p.second=min(val,st.back().second);
-            st.push_back(p);
+            if(numberStack.empty())
+            {
+                pair<int,int> p;
+                p.first=val;
+                p.second=val;
+                numberStack.push_back(p);
+            }
+            else
+            {
+                pair<int,int> p;
+                p.first=val;
+                p.second= min(val, numberStack.back().second);
+                numberStack.push_back(p);
+            }
         }
-    }
-    
-    void pop()
-    {
-        st.pop_back();
-    }
-    
-    int top()
-    {
-        return st.back().first;
-    }
-    
-    int getMin()
-    {
-        return st.back().second;
-    }
+        
+        void pop()
+        {
+            numberStack.pop_back();
+        }
+        
+        int top()
+        {
+            return numberStack.back().first;
+        }
+        
+        int getMin()
+        {
+            return numberStack.back().second;
+        }
 };
 
 /**
