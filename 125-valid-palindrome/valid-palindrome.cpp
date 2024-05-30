@@ -7,14 +7,17 @@ public:
         {
             if(a>='A' && a<='Z')
             {
+                // Converts uppercase to lowercase and adds it to string t
                 t.push_back(a-'A' + 'a');
             }
             else if(a>='a' && a<='z')
             {
+                // Adds the lowercase character to string t
                 t.push_back(a);
             }
             else if(a>='0' && a<='9')
             {
+                // Adds the number to string t
                 t.push_back(a);
             }
         }
