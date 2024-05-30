@@ -21,6 +21,8 @@ public:
                 t.push_back(a);
             }
         }
+
+        // Compares the first half and the second half of string t. If these are not equal then the string is not a palindrome.
         int len = t.size();
         for(int i=0; i < len / 2; ++i)
         {
