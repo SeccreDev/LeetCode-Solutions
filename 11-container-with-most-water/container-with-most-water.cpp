@@ -9,6 +9,7 @@ class Solution
 
             while (left < right)
             {
+                //  Area for rectangle = l * w
                 int currentArea = min(height[left], height[right]) * (right - left);
                 maxArea = max(maxArea, currentArea);
 
