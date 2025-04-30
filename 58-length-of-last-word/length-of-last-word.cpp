@@ -15,7 +15,7 @@ public:
             }
             else
             {
-                length += 1;
+                length ++;
             }
         }
         return length;
