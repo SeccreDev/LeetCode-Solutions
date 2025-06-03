@@ -13,32 +13,31 @@ class Solution
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2)
     {
-        // if list1 happen to be NULL
-		// we will simply return list2.
-		if(list1 == NULL)
+        // Dummy node to simplify edge cases
+        ListNode dummy;
+        ListNode *tail = &dummy;
+
+        while (list1 != nullptr && list2 != nullptr)
         {
-			return list2;
-		}
-		
-		// if list2 happen to be NULL
-		// we will simply return list1.
-		if(list2 == NULL)
-        {
-			return list1;
-		} 
-		
-		// if value pointend by l1 pointer is less than equal to value pointed by l2 pointer
-		// we wall call recursively l1 -> next and whole l2 list.
-		if(list1 -> val <= list2 -> val)
-        {
-			list1 -> next = mergeTwoLists(list1 -> next, list2);
-			return list1;
-		}
-		// we will call recursive l1 whole list and l2 -> next
-		else
-        {
-			list2 -> next = mergeTwoLists(list1, list2 -> next);
-			return list2;            
-		}
+            if (list1->val < list2->val)
+            {
+                tail->next = list1;
+                list1 = list1->next;
+            }
+            else
+            {
+                tail->next = list2;
+                list2 = list2->next;
+            }
+            tail = tail->next;
+        }
+
+        // Append any remaining nodes
+        if (list1 != nullptr)
+            tail->next = list1;
+        else
+            tail->next = list2;
+
+        return dummy.next;  // Skip dummy and return head of new list
     }
 };
