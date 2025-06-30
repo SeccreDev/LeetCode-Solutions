@@ -14,18 +14,18 @@ class Solution
     public:
         TreeNode* invertTree(TreeNode* root)
         {
-            // Base Case
-            if(root==NULL)
+            if (root == nullptr)
             {
-                return NULL;
+                return nullptr;
             }
 
-            invertTree(root->left); //Call the left substree
-            invertTree(root->right); //Call the right substree
-            // Swap the nodes
-            TreeNode* temp = root->left;
-            root->left = root->right;
-            root->right = temp;
-            return root; // Return the root
+            TreeNode *temp = root->right;
+            root->right = root->left;
+            root->left = temp;
+            
+
+            invertTree(root->left);
+            invertTree(root->right);
+            return root;
         }
 };
