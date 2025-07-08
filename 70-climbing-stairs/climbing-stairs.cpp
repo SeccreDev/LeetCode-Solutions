@@ -1,22 +1,20 @@
-class Solution {
-public:
-    int climbStairs(int n)
-    {
-        if (n <= 3)
+class Solution
+{
+    public:
+        int climbStairs(int n)
         {
-            return n;
+            if (n == 0 || n == 1)
+            {
+                return 1;
+            }
+
+            vector<int> dp(n+1);
+            dp[0] = dp[1] = 1;
+            
+            for (int i = 2; i <= n; i++)
+            {
+                dp[i] = dp[i-1] + dp[i-2];
+            }
+            return dp[n];
         }
-
-        int last = 3, secondLast = 2, current;
-
-        for(int i = 3; i < n; i++)
-        {
-            current = last + secondLast;
-            secondLast = last;
-            last = current;
-
-        }
-
-        return current;
-    }
 };
