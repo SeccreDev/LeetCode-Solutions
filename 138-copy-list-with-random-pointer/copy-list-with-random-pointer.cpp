@@ -19,28 +19,25 @@ class Solution
     public:
         Node* copyRandomList(Node* head)
         {
-            if (!head)
+            unordered_map<Node*, Node*> hashMap;
+            Node* cur = head;
+
+            while (cur)
             {
-                return nullptr;
+                hashMap[cur] = new Node(cur->val);
+                cur = cur->next;
             }
-            
-            unordered_map<Node*, Node*> old_to_new;
-            
-            Node* current = head;
-            while (current)
+
+            cur = head;
+
+            while (cur)
             {
-                old_to_new[current] = new Node(current->val);
-                current = current->next;
+                Node* copy = hashMap[cur];
+                copy->next = hashMap[cur->next];
+                copy->random = hashMap[cur->random];
+                cur = cur->next;
             }
-            
-            current = head;
-            while (current)
-            {
-                old_to_new[current]->next = old_to_new[current->next];
-                old_to_new[current]->random = old_to_new[current->random];
-                current = current->next;
-            }
-            
-            return old_to_new[head];
+
+            return hashMap[head];        
         }
 };
